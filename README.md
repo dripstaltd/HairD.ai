@@ -28,10 +28,9 @@ Users should be able to upload photos of their current hair state and receive ta
 **Front End:**
 - Web application (potential for mobile optimization or a mobile app later).
 - React (for building the user interface)
-- Tailwind CSS or SCSS (for styling)
+- Tailwind CSS
 - Jest (for unit testing)
 - Axios (for handling API requests).
-- Redux toolkit (for state management) possibly but have not learnt this yet
 
 **Back End:**
 - Nodejs (Express)
