@@ -1,3 +1,7 @@
+
+
+![Alt-text](https://img.shields.io/badge/yes-nodejs-8A2BE2)
+
 # HairD.ai
 Hair scanner and colour advice for at-home or salon dyeing.
 
@@ -11,7 +15,8 @@ Additional questions, such as "Is your hair already dyed?" help refine the resul
 Hairdai generates personalized advice to guide users on their hair-coloring journey. Whether you're planning to dye at home or consult a stylist, Hairdai ensures you're prepared.
 
 Extra Feature: Users could view their hair with the chosen hair colour changed in the image.
-Disclaimer -> Always consult with a professional hairstylist. Hairdai is a guide, but skilled professionals can sometimes achieve results beyond the app's recommendations—often at a higher cost or over multiple sessions.
+
+*Disclaimer -> Always consult with a professional hairstylist. Hairdai is a guide, but skilled professionals can sometimes achieve results beyond the app's recommendations—often at a higher cost or over multiple sessions.*
 
 ## MVP
 Users should be able to upload photos of their current hair state and receive tailored hair color advice or realistic options for achieving their desired look.
