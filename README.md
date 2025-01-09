@@ -1,9 +1,11 @@
-
-
 ![Alt-text](https://img.shields.io/badge/yes-nodejs-8A2BE2)
 
+
+![Logo](./client/src/assets/hairdai_logo_light.png)
 # HairD.ai
 Hair scanner and colour advice for at-home or salon dyeing.
+
+
 
 ## Description
 Hairdai helps users make realistic and informed decisions when choosing to dye their hair at home or have it professionally colored in a salon. The app's results are based on a single dye session and tailored to each user's unique hair.
