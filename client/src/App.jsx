@@ -1,12 +1,13 @@
 import './App.css'
+import Upload from './components/Upload.component';
 
 function App() {
 
   return (
     <>
-      <p className='text-3xl bg-slate-200 font-bold content-center h-screen'>
-        Hello World
-      </p>
+      <div className='content-center h-screen'>
+        <Upload/>
+      </div>
     </>
   )
 }
