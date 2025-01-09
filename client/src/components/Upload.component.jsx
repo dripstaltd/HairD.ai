@@ -28,7 +28,6 @@ export default function Upload () {
 
   // Uploads file to the api
   const uploadImage = async (base64Image) => {
-    console.log(base64Image);
     try {
       await fetch('/api/upload', {
         method: 'POST',

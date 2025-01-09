@@ -3,6 +3,7 @@ import 'dotenv/config'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import cloudinary from './utils/cloudinary.js';
+import calculateAverageShade from './utils/sharp.js';
 
 const app = express();
 const PORT = process.env.PORT;
@@ -27,9 +28,17 @@ app.post('/api/upload', async (req, res) => {
     }
 
     const uploadResult = await cloudinary.uploader.upload(base64EncodedImageString, {
-      upload_preset: 'hairdai'
+      upload_preset: 'hairdai',
+      transformation: [
+          { width: 100, height: 100, crop: 'crop', gravity: 'center' },
+          { effect: 'grayscale' },
+          { effect: 'blur:10' },
+        ],
+      // public_id: 'shoes' // create unique id
     });
 
+    const averageShade = await calculateAverageShade(uploadResult.secure_url);
+    console.log(averageShade);
     res.status(200).json({msg: 'Successfully uploaded to cloudinary'});
   } catch (err) {
     console.error(err.message)
