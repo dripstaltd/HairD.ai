@@ -36,6 +36,10 @@ export default function Upload() {
     previewSource.forEach((base64Image, index) => {
       uploadImage(base64Image, index);
     });
+
+    // Reset the inputs
+    setFileInputState('');
+    setPreviewSource([]);
   };
 
   // Uploads file to the api
@@ -48,10 +52,6 @@ export default function Upload() {
       });
     } catch (err) {
       console.error('Error uploading image', index, 'to the api:', err);
-    } finally {
-      // Reset the inputs
-      setFileInputState('');
-      setPreviewSource([]);
     }
   };
 
