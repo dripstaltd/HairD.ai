@@ -48,6 +48,10 @@ export default function Upload() {
       });
     } catch (err) {
       console.error('Error uploading image', index, 'to the api:', err);
+    } finally {
+      // Reset the inputs
+      setFileInputState('');
+      setPreviewSource([]);
     }
   };
 
