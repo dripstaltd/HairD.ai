@@ -6,28 +6,40 @@ export default function Upload() {
 
   // When user uploads the file
   const handleFileInputChange = (e) => {
-    const file = e.target.files[0]; // single file upload
-    previewFile(file);
+    const files = e.target.files; // Multiple file upload
+    const filesArray = Array.from(files);
+    previewFiles(filesArray);
   };
 
   // sets previews source
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
+  const previewFiles = (files) => {
+    const previews = [];
+    files.forEach((file) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        previews.push(reader.result);
+
+        // Update state once all files are read
+        if (previews.length === files.length) {
+          setPreviewSource(previews);
+        }
+      };
+    });
   };
 
+  // NOTE: I could handle the file sizes here with sharp.
   // Handles form submit -> triggers upload image function if there is an image
   const handleSubmitFile = (e) => {
     e.preventDefault();
-    if (!previewSource) return;
-    uploadImage(previewSource);
+    if (!previewSource.length) return;
+    previewSource.forEach((base64Image, index) => {
+      uploadImage(base64Image, index);
+    });
   };
 
   // Uploads file to the api
-  const uploadImage = async (base64Image) => {
+  const uploadImage = async (base64Image, index) => {
     try {
       await fetch('/api/upload', {
         method: 'POST',
@@ -35,7 +47,7 @@ export default function Upload() {
         headers: { 'Content-type': 'application/json' },
       });
     } catch (err) {
-      console.error(err);
+      console.error('Error uploading image', index, 'to the api:', err);
     }
   };
 
@@ -45,10 +57,10 @@ export default function Upload() {
       <form className="flex flex-col" onSubmit={handleSubmitFile}>
         <input
           type="file"
-          name="image"
+          name="images"
+          multiple
           className="form-input p-4"
           onChange={handleFileInputChange}
-          value={fileInputState}
         />
         <button
           className="px-6 py-3.5 text-base font-medium text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
@@ -57,12 +69,17 @@ export default function Upload() {
           Submit
         </button>
       </form>
-      {previewSource && (
-        <img
-          src={previewSource}
-          alt="uploaded image"
-          className="w-60 rounded-lg my-6"
-        />
+      {previewSource.length > 0 && (
+        <div className="flex flex-wrap gap-4 mt-6">
+          {previewSource.map((src, index) => (
+            <img
+              key={index}
+              src={src}
+              alt={`uploaded preview ${index + 1}`}
+              className="w-60 rounded-lg"
+            />
+          ))}
+        </div>
       )}
     </div>
   );
