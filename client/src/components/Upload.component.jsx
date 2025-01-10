@@ -68,7 +68,6 @@ export default function Upload({ handleHairData }) {
 
   return (
     <div className="flex flex-col w-10/12 m-auto">
-      <h1 className="font-bold text-5xl p-4">Upload</h1>
       <form className="flex flex-col" onSubmit={handleSubmitFile}>
         <input
           type="file"
