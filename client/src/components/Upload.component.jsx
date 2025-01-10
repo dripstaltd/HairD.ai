@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function Upload() {
+export default function Upload({ handleHairData }) {
   const [fileInputState, setFileInputState] = useState(''); // store the input value
   const [previewSource, setPreviewSource] = useState([]); // array for multiple previews
 
@@ -30,12 +30,17 @@ export default function Upload() {
 
   // NOTE: I could handle the file sizes here with sharp.
   // Handles form submit -> triggers upload image function if there is an image
-  const handleSubmitFile = (e) => {
+  const handleSubmitFile = async (e) => {
     e.preventDefault();
     if (!previewSource.length) return;
-    previewSource.forEach((base64Image, index) => {
-      uploadImage(base64Image, index);
-    });
+
+    // Upload each file
+    for (const base64Image of previewSource) {
+      const result = await uploadImage(base64Image);
+      if (result) {
+        handleHairData(result); // Server response
+      }
+    }
 
     // Reset the inputs
     setFileInputState('');
@@ -45,11 +50,17 @@ export default function Upload() {
   // Uploads file to the api
   const uploadImage = async (base64Image, index) => {
     try {
-      await fetch('/api/upload', {
+      const response = await fetch('/api/upload', {
         method: 'POST',
         body: JSON.stringify({ data: base64Image }),
         headers: { 'Content-type': 'application/json' },
       });
+
+      if (!response.ok) throw new Error('Failed to upload image');
+
+      const data = await response.json();
+
+      return data; // Return response to be accessed by handleHairData State
     } catch (err) {
       console.error('Error uploading image', index, 'to the api:', err);
     }
@@ -73,9 +84,9 @@ export default function Upload() {
           Submit
         </button>
       </form>
-      {previewSource.length > 0 && (
-        <div className="flex flex-wrap gap-4 mt-6">
-          {previewSource.map((src, index) => (
+      <div className="flex flex-wrap gap-4 mt-6 h-64">
+        {previewSource.length > 0 &&
+          previewSource.map((src, index) => (
             <img
               key={index}
               src={src}
@@ -83,8 +94,7 @@ export default function Upload() {
               className="w-60 rounded-lg"
             />
           ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -42,11 +42,12 @@ app.post('/api/upload', async (req, res) => {
 
     // Fetch the processed image from Cloudinary and calculate the average shade
     const averageShade = await calculateAverageShade(uploadResult.secure_url);
-    console.log(averageShade); // -> number
+    console.log(uploadResult); // -> number
 
     res.status(200).json({
       message: 'Successfully uploaded to cloudinary',
       base_shade: averageShade,
+      image_url: uploadResult.secure_url,
     });
   } catch (err) {
     console.error('Error processing image:', err.message);
