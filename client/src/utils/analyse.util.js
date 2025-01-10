@@ -5,7 +5,7 @@ export default function analyse(hairDataObject) {
   const sum = shadeData.reduce((acc, num) => acc + num, 0);
 
   // calc the mean
-  const mean = sum / shadeData.length;
+  const mean = Math.floor(sum / shadeData.length);
 
   return mean;
 }
