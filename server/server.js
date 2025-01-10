@@ -36,7 +36,6 @@ app.post('/api/upload', async (req, res) => {
           { effect: 'grayscale' }, // Turn to black and white
           { effect: 'blur:10' }, // Blur
         ],
-        // public_id: 'shoes' // create unique id
       }
     );
 
