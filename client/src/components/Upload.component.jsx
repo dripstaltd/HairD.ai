@@ -1,32 +1,33 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 export default function Upload({ handleHairData }) {
-  const [fileInputState, setFileInputState] = useState(''); // store the input value
-  const [previewSource, setPreviewSource] = useState([]); // array for multiple previews
+  const [previewSource, setPreviewSource] = useState([]); // Array for multiple previews (stores the Base64 encoded data urls)
 
-  // When user uploads the file
-  const handleFileInputChange = (e) => {
-    const files = e.target.files; // Multiple file upload
-    const filesArray = Array.from(files);
-    previewFiles(filesArray);
-  };
-
-  // sets previews source
-  const previewFiles = (files) => {
+  // Handles files dropped or selected
+  // useCallback - memoize - function doesn't get recreated on every render.
+  const onDrop = useCallback((droppedFiles) => {
     const previews = [];
-    files.forEach((file) => {
+
+    droppedFiles.forEach((file) => {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         previews.push(reader.result);
 
         // Update state once all files are read
-        if (previews.length === files.length) {
-          setPreviewSource(previews);
+        if (previews.length === droppedFiles.length) {
+          setPreviewSource((prev) => [...prev, ...previews]);
         }
       };
     });
-  };
+  }, []);
+
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+    onDrop,
+    accept: 'image/*',
+    multiple: true,
+  });
 
   // NOTE: I could handle the file sizes here with sharp.
   // Handles form submit -> triggers upload image function if there is an image
@@ -43,7 +44,6 @@ export default function Upload({ handleHairData }) {
     }
 
     // Reset the inputs
-    setFileInputState('');
     setPreviewSource([]);
   };
 
@@ -67,24 +67,40 @@ export default function Upload({ handleHairData }) {
   };
 
   return (
-    <div className="flex flex-col bg-pink-400">
-      <form className="flex flex-col bg-pink-500" onSubmit={handleSubmitFile}>
-        <input
-          type="file"
-          name="images"
-          multiple
-          className="form-input p-4"
-          onChange={handleFileInputChange}
-        />
+    <>
+      <form
+        className="flex flex-col bg-pink-500 p-6 h-full w-96 rounded-t-lg"
+        onSubmit={handleSubmitFile}
+      >
+        <div className="mb-6 flex-1">
+          <div
+            {...getRootProps({
+              className:
+                'p-10 rounded-md cursor-pointer bg-white border border-gray-300',
+            })}
+          >
+            <input {...getInputProps()} />
+            {isDragActive ? (
+              <p className="text-center text-gray-600">
+                Drop the files here...
+              </p>
+            ) : (
+              <p className="text-center text-gray-600">
+                Drag and drop files here, or click to select files
+              </p>
+            )}
+          </div>
+        </div>
         <button
-          className="py-3.5 w-60 text-base font-medium rounded-sm text-center bg-slate-700 text-white"
+          className="py-3.5 w-full text-base font-medium rounded-sm text-center bg-slate-700 text-white"
           type="submit"
         >
           Submit
         </button>
       </form>
+
       {/* Below is the display of images ready for uploading */}
-      <div className="flex flex-wrap gap-4 mt-6 h-40">
+      <div className="flex flex-wrap gap-4 mt-6 p-4">
         {previewSource.length > 0 &&
           previewSource.map((src, index) => (
             <img
@@ -95,6 +111,6 @@ export default function Upload({ handleHairData }) {
             />
           ))}
       </div>
-    </div>
+    </>
   );
 }
