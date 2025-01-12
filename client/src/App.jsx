@@ -1,6 +1,6 @@
 import './App.css';
 import Upload from './components/Upload.component';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import analyse from './utils/analyse.util';
 import AnalyseButton from './components/AnalyseButton.component';
 import DisplayBaseShade from './components/DisplayBaseShade.component';
@@ -9,7 +9,8 @@ import Gallery from './components/Gallery.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
-  const [myBaseShade, setMyBaseShade] = useState(Number);
+  const [myBaseShade, setMyBaseShade] = useState(null);
+  const [showGallery, setShowGallery] = useState(false);
 
   const handleHairData = (results) => {
     setHairData((prevResults) => [...prevResults, results]);
@@ -22,6 +23,13 @@ function App() {
     setMyBaseShade(() => base);
     setHairData([]);
   };
+
+  // Show gallery only when base shade is generated
+  useEffect(() => {
+    if (myBaseShade !== null) {
+      setShowGallery(true);
+    }
+  }, [myBaseShade]);
 
   return (
     <div className="grid grid-cols-10 grid-rows-10 h-screen">
@@ -38,7 +46,7 @@ function App() {
       <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 overflow-y-hidden ">
         <DisplayBaseShade myBaseShade={myBaseShade} />
         <AnalyseButton handleAnalyse={handleAnalyse} />
-        <Gallery />
+        {showGallery && <Gallery myBaseShade={myBaseShade} />}
       </div>
     </div>
   );
