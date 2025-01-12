@@ -5,6 +5,7 @@ import analyse from './utils/analyse.util';
 import AnalyseButton from './components/AnalyseButton.component';
 import DisplayBaseShade from './components/DisplayBaseShade.component';
 import ToAnalyse from './components/ToAnalyse.component';
+import Gallery from './components/Gallery.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -34,9 +35,10 @@ function App() {
           <ToAnalyse hairData={hairData} />
         </div>
       </div>
-      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 overflow-y-hidden overflow-x-scroll">
+      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 overflow-y-hidden ">
         <DisplayBaseShade myBaseShade={myBaseShade} />
         <AnalyseButton handleAnalyse={handleAnalyse} />
+        <Gallery />
       </div>
     </div>
   );
