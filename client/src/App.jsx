@@ -2,6 +2,9 @@ import './App.css';
 import Upload from './components/Upload.component';
 import { useState } from 'react';
 import analyse from './utils/analyse.util';
+import AnalyseButton from './components/AnalyseButton.component';
+import DisplayBaseShade from './components/DisplayBaseShade.component';
+import ToAnalyse from './components/ToAnalyse.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -20,34 +23,23 @@ function App() {
   };
 
   return (
-    <>
-      <div className="p-20 h-screen flex flex-col">
-        <h1 className="font-bold text-5xl p-4">Upload</h1>
-        <h1 className=" text-3xl  text-gray-500">
-          Your base shade is: {myBaseShade || ''}
-        </h1>
-        <Upload handleHairData={handleHairData} />
-        <button
-          onClick={handleAnalyse}
-          className="px-6 py-3.5 text-base font-medium text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
-          type="button"
-        >
-          Analyse
-        </button>
-        <div className="flex gap-6 justify-center h-40">
-          {hairData.map((data, index) => (
-            <div key={index} className="">
-              <img
-                src={data.image_url}
-                alt={`Uploaded ${index}`}
-                className="w-32 rounded-lg"
-              />
-              <p>Base Shade: {data.base_shade}</p>
-            </div>
-          ))}
+    <div className="grid grid-cols-10 grid-rows-10 h-screen">
+      <div className="col-span-10 row-span-1 col-start-1 bg-slate-500">
+        head
+      </div>
+      {/* Main body */}
+      <div className="col-span-8 row-span-6 col-start-2 row-start-2 content-end pt-4">
+        <div className="flex flex-col h-full rounded-t-lg outline-dashed bg-slate-500">
+          <Upload handleHairData={handleHairData} />
+          <ToAnalyse hairData={hairData} />
+          <AnalyseButton handleAnalyse={handleAnalyse} />
+          <DisplayBaseShade myBaseShade={myBaseShade} />
         </div>
       </div>
-    </>
+      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 ">
+        workpanel
+      </div>
+    </div>
   );
 }
 

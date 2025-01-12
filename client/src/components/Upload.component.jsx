@@ -67,8 +67,8 @@ export default function Upload({ handleHairData }) {
   };
 
   return (
-    <div className="flex flex-col w-10/12 m-auto">
-      <form className="flex flex-col" onSubmit={handleSubmitFile}>
+    <div className="flex flex-col bg-pink-400">
+      <form className="flex flex-col bg-pink-500" onSubmit={handleSubmitFile}>
         <input
           type="file"
           name="images"
@@ -77,20 +77,21 @@ export default function Upload({ handleHairData }) {
           onChange={handleFileInputChange}
         />
         <button
-          className="px-6 py-3.5 text-base font-medium text-white bg-purple-400 hover:bg-purple-500 focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-lg text-center"
+          className="py-3.5 w-60 text-base font-medium rounded-sm text-center bg-slate-700 text-white"
           type="submit"
         >
           Submit
         </button>
       </form>
-      <div className="flex flex-wrap gap-4 mt-6 h-64">
+      {/* Below is the display of images ready for uploading */}
+      <div className="flex flex-wrap gap-4 mt-6 h-40">
         {previewSource.length > 0 &&
           previewSource.map((src, index) => (
             <img
               key={index}
               src={src}
               alt={`uploaded preview ${index + 1}`}
-              className="w-60 rounded-lg"
+              className="w-32 h-32 rounded-sm"
             />
           ))}
       </div>
