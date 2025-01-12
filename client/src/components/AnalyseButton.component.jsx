@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+
 export default function AnalyseButton({ handleAnalyse }) {
   return (
     <button

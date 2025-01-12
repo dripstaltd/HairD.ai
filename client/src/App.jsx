@@ -28,16 +28,15 @@ function App() {
         head
       </div>
       {/* Main body */}
-      <div className="col-span-8 row-span-6 col-start-2 row-start-2 content-end pt-4">
-        <div className="flex flex-col h-full rounded-t-lg outline-dashed bg-slate-500">
+      <div className="col-span-8 row-span-6 col-start-2 row-start-2 content-end pt-4 ">
+        <div className="flex flex-col h-full bg-pink-400 rounded-t-lg">
           <Upload handleHairData={handleHairData} />
           <ToAnalyse hairData={hairData} />
-          <AnalyseButton handleAnalyse={handleAnalyse} />
-          <DisplayBaseShade myBaseShade={myBaseShade} />
         </div>
       </div>
-      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 ">
-        workpanel
+      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 overflow-y-hidden overflow-x-scroll">
+        <DisplayBaseShade myBaseShade={myBaseShade} />
+        <AnalyseButton handleAnalyse={handleAnalyse} />
       </div>
     </div>
   );

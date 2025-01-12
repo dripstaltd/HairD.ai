@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 
@@ -69,7 +70,7 @@ export default function Upload({ handleHairData }) {
   return (
     <>
       <form
-        className="flex flex-col bg-pink-500 p-6 h-full w-96 rounded-t-lg"
+        className="flex flex-col bg-pink-500 p-4  w-96 rounded-lg"
         onSubmit={handleSubmitFile}
       >
         <div className="mb-6 flex-1">
