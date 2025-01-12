@@ -27,7 +27,12 @@ export default function Gallery({ myBaseShade }) {
     <div className="overflow-x-auto whitespace-nowrap p-4">
       <div className="inline-flex gap-4">
         {Array.from({ length: shades }, (_, i) => (
-          <SwatchItem key={i} />
+          <>
+            <div className="relative">
+              <SwatchItem className="absolute " key={i++} />
+              <p className="absolute top-9 right-14 text-lg text-white">{i}</p>
+            </div>
+          </>
         ))}
       </div>
     </div>
