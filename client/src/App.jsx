@@ -5,6 +5,7 @@ import analyse from './utils/analyse.util';
 import AnalyseButton from './components/AnalyseButton.component';
 import ToAnalyse from './components/ToAnalyse.component';
 import Gallery from './components/Gallery.component';
+import Results from './components/Results.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -37,6 +38,7 @@ function App() {
         <ToAnalyse hairData={hairData} />
         <AnalyseButton handleAnalyse={handleAnalyse} />
         {showGallery && <Gallery myBaseShade={myBaseShade} />}
+        <Results />
       </div>
     </>
   );
