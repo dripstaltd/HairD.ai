@@ -6,6 +6,7 @@ import AnalyseButton from './components/AnalyseButton.component';
 import DisplayBaseShade from './components/DisplayBaseShade.component';
 import ToAnalyse from './components/ToAnalyse.component';
 import Gallery from './components/Gallery.component';
+import Button from './components/button/button.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -34,7 +35,7 @@ function App() {
   return (
     <div className="grid grid-cols-10 grid-rows-10 h-screen">
       <div className="col-span-10 row-span-1 col-start-1 bg-slate-500">
-        head
+        <Button />
       </div>
       {/* Main body */}
       <div className="col-span-8 row-span-6 col-start-2 row-start-2 content-end pt-4 ">

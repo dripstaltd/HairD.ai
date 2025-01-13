@@ -1,5 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
 #root {
   margin: 0 auto;
   text-align: center;
+  font-size: 16px;
 }
+.btn {
+  letter-spacing: 1.4px;
+  font-family: 'Roboto';
+  font-size: 16px;
+  letter-spacing: 1.4px;
+  border-style: inset;
+  width: 152px;
+  height: 40px;
+  color: #eeffab;
+  text-shadow: 0px 0px 8px rgba(146, 211, 0, 0.8);
 
+  border-radius: 4px;
+  outline: none;
+  background: linear-gradient(
+    0deg,
+    rgba(64, 65, 66, 1) 0%,
+    rgba(44, 46, 47, 1) 100%
+  );
+  box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
