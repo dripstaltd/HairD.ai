@@ -69,46 +69,39 @@ export default function Upload({ handleHairData }) {
 
   return (
     <>
-      <form
-        className="flex flex-col bg-pink-500 p-4  w-96 rounded-lg"
-        onSubmit={handleSubmitFile}
-      >
-        <div className="mb-6 flex-1">
+      <form className="flex flex-col gap-4 " onSubmit={handleSubmitFile}>
+        <div className="inset__dark p-4 ">
           <div
             {...getRootProps({
               className:
-                'p-10 rounded-md cursor-pointer bg-white border border-gray-300',
+                ' outline-dotted outline-2 outline-gray-500 outline-offset-4 content-center h-96 rounded-sm cursor-pointer',
             })}
           >
             <input {...getInputProps()} />
             {isDragActive ? (
-              <p className="text-center text-gray-600">
-                Drop the files here...
-              </p>
+              <p className="text-center text-white">Drop it like it's hot...</p>
             ) : (
-              <p className="text-center text-gray-600">
-                Drag and drop files here, or click to select files
+              <p className="text-center text-white">
+                Drop files here, or click to select files
               </p>
             )}
           </div>
         </div>
-        <button
-          className="py-3.5 w-full text-base font-medium rounded-sm text-center bg-slate-700 text-white"
-          type="submit"
-        >
+
+        <button className="btn card__dark w-full p-2" type="submit">
           Submit
         </button>
       </form>
 
       {/* Below is the display of images ready for uploading */}
-      <div className="flex flex-wrap gap-4 mt-6 p-4">
+      <div className=" flex flex-wrap gap-2 mt-4 p-2 h-52 inset__dark justify-around">
         {previewSource.length > 0 &&
           previewSource.map((src, index) => (
             <img
               key={index}
               src={src}
               alt={`uploaded preview ${index + 1}`}
-              className="w-32 h-32 rounded-sm"
+              className="w-14 h-14 rounded-sm"
             />
           ))}
       </div>

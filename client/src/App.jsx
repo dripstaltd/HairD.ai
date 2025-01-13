@@ -3,10 +3,8 @@ import Upload from './components/Upload.component';
 import { useState, useEffect } from 'react';
 import analyse from './utils/analyse.util';
 import AnalyseButton from './components/AnalyseButton.component';
-import DisplayBaseShade from './components/DisplayBaseShade.component';
 import ToAnalyse from './components/ToAnalyse.component';
 import Gallery from './components/Gallery.component';
-import Button from './components/button/button.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -33,23 +31,14 @@ function App() {
   }, [myBaseShade]);
 
   return (
-    <div className="grid grid-cols-10 grid-rows-10 h-screen">
-      <div className="col-span-10 row-span-1 col-start-1 bg-slate-500">
-        <Button />
-      </div>
-      {/* Main body */}
-      <div className="col-span-8 row-span-6 col-start-2 row-start-2 content-end pt-4 ">
-        <div className="flex flex-col h-full bg-pink-400 rounded-t-lg">
-          <Upload handleHairData={handleHairData} />
-          <ToAnalyse hairData={hairData} />
-        </div>
-      </div>
-      <div className="col-span-10 row-span-3 row-start-8 bg-zinc-700 overflow-y-hidden ">
-        <DisplayBaseShade myBaseShade={myBaseShade} />
+    <>
+      <div className="p-4 w-96 m-auto">
+        <Upload handleHairData={handleHairData} />
+        <ToAnalyse hairData={hairData} />
         <AnalyseButton handleAnalyse={handleAnalyse} />
         {showGallery && <Gallery myBaseShade={myBaseShade} />}
       </div>
-    </div>
+    </>
   );
 }
 

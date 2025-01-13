@@ -4,26 +4,40 @@
   margin: 0 auto;
   text-align: center;
   font-size: 16px;
-}
-.btn {
-  letter-spacing: 1.4px;
   font-family: 'Roboto';
-  font-size: 16px;
-  letter-spacing: 1.4px;
-  border-style: inset;
-  width: 152px;
-  height: 40px;
+  letter-spacing: 1.1px;
+  background: #282828;
+  height: 100vh;
+}
+
+.neon {
   color: #eeffab;
   text-shadow: 0px 0px 8px rgba(146, 211, 0, 0.8);
+  letter-spacing: 1.2px;
+}
 
+.inset__dark {
   border-radius: 4px;
-  outline: none;
   background: linear-gradient(
     0deg,
     rgba(64, 65, 66, 1) 0%,
     rgba(44, 46, 47, 1) 100%
   );
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: inset 0px 2px 3px 0px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn {
+  text-shadow: 0px -1px 0px rgba(0, 0, 0, 0.7);
+}
+
+.card__dark {
+  color: #f4f4f4;
+  border-radius: 4px;
+  background: linear-gradient(0deg, #414344 100%, #2b2d2e 0%);
+  border: 1px solid #12161a;
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid rgb(255, 255, 255, 0.3);
+  border-bottom: 1px solid #1e242b;
 }
