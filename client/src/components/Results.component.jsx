@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 export default function Results({ target, myBaseShade }) {
   const renderResults = () => {
     if (target === null) {
@@ -9,7 +10,7 @@ export default function Results({ target, myBaseShade }) {
         <p>Hair being Natural: True</p>
         <p>Base hair: {myBaseShade}</p>
         <p>Target level: {target + 1}</p>
-        <p>Levels of lift: </p>
+        <p>Levels of lift: {myBaseShade - (target + 1)}</p>
         <p>Developer required: %</p>
         <br />
         <p className="text-gray-400 italic">
@@ -19,16 +20,25 @@ export default function Results({ target, myBaseShade }) {
     );
   };
 
+  const handleDiscordClick = () => {
+    window.open(
+      'https://discord.gg/qqXXekcHrQ',
+      '_blank',
+      'noopener,noreferrer'
+    );
+  };
+
   return (
-    <div className="flex flex-row justify-between p-4">
-      <div>
-        <p className="text-2xl flex text-white">Results:</p>
-        <div className="text-left text-white p-4">{renderResults()}</div>
+    <div className="flex flex-row justify-between p-8">
+      <div className="">
+        <p className="text-lg flex neon">Results:</p>
+        <div className="text-left text-white">{renderResults()}</div>
       </div>
       <div className="card__dark flex flex-col divide-y divide-gray-800 h-fit cursor-pointer">
-        <div className="p-3">export</div>
-        <div className="p-3">save</div>
-        <div className="p-3">share</div>
+        <div className="p-3 neon">export</div>
+        <div className="p-3" onClick={handleDiscordClick}>
+          suggestions
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import Gallery from './components/Gallery.component';
 import Results from './components/Results.component';
 import Grid from './components/Grid.component';
 import Header from './components/Header.component';
+import Details from './components/Details.component';
+import Guide from './components/Guide.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -45,8 +47,8 @@ function App() {
         showGallery && (
           <Gallery setTarget={setTarget} myBaseShade={myBaseShade} /> // Swatches Gallery
         ),
-        <div className="text-white">Quick Start Guide</div>, // Guide
-        <div>Further Details</div>
+        <Guide />, // Guide
+        target ? <Details target={target} /> : ''
       )}
     </>
   );
