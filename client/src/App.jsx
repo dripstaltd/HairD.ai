@@ -13,6 +13,7 @@ function App() {
   const [hairData, setHairData] = useState([]);
   const [myBaseShade, setMyBaseShade] = useState(null);
   const [showGallery, setShowGallery] = useState(false);
+  const [target, setTarget] = useState(null);
 
   const handleHairData = (results) => {
     setHairData((prevResults) => [...prevResults, results]);
@@ -39,12 +40,13 @@ function App() {
         <Header />, // header
         <Upload handleHairData={handleHairData} />, //left panel upload
         <AnalyseButton handleAnalyse={handleAnalyse} />, // Button in upload area of grid
-        <Results />, // results
+        <Results target={target} myBaseShade={myBaseShade} />, // results
         <ToAnalyse hairData={hairData} />, // Processed Images area / Main
-        showGallery && <Gallery myBaseShade={myBaseShade} />, // Swatches Gallery
+        showGallery && (
+          <Gallery setTarget={setTarget} myBaseShade={myBaseShade} /> // Swatches Gallery
+        ),
         <div className="text-white">Quick Start Guide</div>, // Guide
-        <div>Further Details</div>,
-        'helo'
+        <div>Further Details</div>
       )}
     </>
   );
