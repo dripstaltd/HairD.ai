@@ -100,7 +100,7 @@ export default function Upload({ handleHairData }) {
             ))}
         </div>
         <button className="btn card__dark w-full p-2" type="submit">
-          Submit
+          <span>Step 1:</span> <span className="neon">Process Images</span>
         </button>
       </form>
     </>
