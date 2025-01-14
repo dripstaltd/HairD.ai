@@ -36,6 +36,7 @@ export default function Results({ target, myBaseShade }) {
       </div>
       <div className="card__dark flex flex-col divide-y divide-gray-800 h-fit cursor-pointer">
         <div className="p-3 neon">export</div>
+        <div className="p-3 neon">Try On</div>
         <div className="p-3" onClick={handleDiscordClick}>
           suggestions
         </div>

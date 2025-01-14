@@ -16,10 +16,10 @@ export default function Gallery({ myBaseShade, setTarget }) {
             key={i}
             className="cursor-pointer"
             onClick={() => {
-              setTarget(1);
+              setTarget(i);
             }}
           >
-            <SwatchItem />
+            <SwatchItem level={i} />
             <p className="text-lg neon">{i}</p>
           </div>
         ))}
