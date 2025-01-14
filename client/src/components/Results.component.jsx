@@ -12,15 +12,20 @@ export default function Results(data) {
     if (!data) return;
 
     results.base = data;
+    return (
+      <>
+        <p>{data}</p>
+      </>
+    );
   };
 
   return (
     <>
-      <div className="inset__dark flex flex-row justify-between p-4">
+      <div className="flex flex-row justify-between p-4">
         <div>
           <p className="text-2xl flex text-white">Results:</p>
           <div className="inset__dark w-auto">
-            <p>{data ? handleResults : 'Your results will appear here 😁'}</p>
+            <p>{handleResults}</p>
           </div>
         </div>
         {/* Side bar */}

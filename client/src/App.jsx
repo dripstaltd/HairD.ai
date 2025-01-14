@@ -6,6 +6,8 @@ import AnalyseButton from './components/AnalyseButton.component';
 import ToAnalyse from './components/ToAnalyse.component';
 import Gallery from './components/Gallery.component';
 import Results from './components/Results.component';
+import Grid from './components/Grid.component';
+import Header from './components/Header.component';
 
 function App() {
   const [hairData, setHairData] = useState([]);
@@ -33,13 +35,17 @@ function App() {
 
   return (
     <>
-      <div className="p-4 w-96 m-auto">
-        <Upload handleHairData={handleHairData} />
-        <ToAnalyse hairData={hairData} />
-        <AnalyseButton handleAnalyse={handleAnalyse} />
-        {showGallery && <Gallery myBaseShade={myBaseShade} />}
-        <Results />
-      </div>
+      {Grid(
+        <Header />, // header
+        <Upload handleHairData={handleHairData} />, //left panel upload
+        <AnalyseButton handleAnalyse={handleAnalyse} />, // Button in upload area of grid
+        <Results />, // results
+        <ToAnalyse hairData={hairData} />, // Processed Images area / Main
+        showGallery && <Gallery myBaseShade={myBaseShade} />, // Swatches Gallery
+        <div className="text-white">Quick Start Guide</div>, // Guide
+        <div>Further Details</div>,
+        'helo'
+      )}
     </>
   );
 }

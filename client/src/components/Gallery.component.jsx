@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import SwatchItem from './Swatches.component';
 
 // There are 10 levels of lift
@@ -24,13 +25,16 @@ export default function Gallery({ myBaseShade }) {
   const shades = typeof myBaseShade === 'number' ? myBaseShade + 4 : 0; // Base shade + 4 levels of lift
 
   return (
-    <div className="overflow-x-auto whitespace-nowrap p-4">
-      <div className="inline-flex gap-4">
+    <div className="overflow-x-auto whitespace-nowrap p-4 flex flex-col gap-4">
+      <h2 className="text-white btn text-lg">
+        These levels of brightness have been generated just for you!
+      </h2>
+      <div className="inline-flex gap-4 justify-center">
         {Array.from({ length: shades }, (_, i) => (
           <>
-            <div className="relative">
-              <SwatchItem className="absolute " key={i++} />
-              <p className="absolute top-9 right-14 text-lg text-white">{i}</p>
+            <div>
+              <SwatchItem key={i++} />
+              <p className="text-lg neon">{i}</p>
             </div>
           </>
         ))}

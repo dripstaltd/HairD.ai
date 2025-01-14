@@ -15,7 +15,6 @@ export default function Upload({ handleHairData }) {
       reader.readAsDataURL(file);
       reader.onloadend = () => {
         previews.push(reader.result);
-
         // Update state once all files are read
         if (previews.length === droppedFiles.length) {
           setPreviewSource((prev) => [...prev, ...previews]);
@@ -88,23 +87,22 @@ export default function Upload({ handleHairData }) {
           </div>
         </div>
 
+        {/* Below is the display of images ready for uploading */}
+        <div className=" flex flex-wrap gap-2 p-2 h-52 inset__dark justify-around">
+          {previewSource.length > 0 &&
+            previewSource.map((src, index) => (
+              <img
+                key={index}
+                src={src}
+                alt={`uploaded preview ${index + 1}`}
+                className="w-14 h-14 rounded-sm"
+              />
+            ))}
+        </div>
         <button className="btn card__dark w-full p-2" type="submit">
           Submit
         </button>
       </form>
-
-      {/* Below is the display of images ready for uploading */}
-      <div className=" flex flex-wrap gap-2 mt-4 p-2 h-52 inset__dark justify-around">
-        {previewSource.length > 0 &&
-          previewSource.map((src, index) => (
-            <img
-              key={index}
-              src={src}
-              alt={`uploaded preview ${index + 1}`}
-              className="w-14 h-14 rounded-sm"
-            />
-          ))}
-      </div>
     </>
   );
 }

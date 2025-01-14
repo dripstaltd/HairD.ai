@@ -1,10 +1,10 @@
 // Swatch component will display a list of hair color swatches.
-import swatchShadowCard from '../assets/swatch_shadow_card.png';
+import swatchShadowCard from '../assets/swatch.png';
 
 export default function SwatchItem() {
   return (
     <>
-      <img src={swatchShadowCard} className="" alt="" />
+      <img className="w-24 content-center" src={swatchShadowCard} />
     </>
   );
 }
