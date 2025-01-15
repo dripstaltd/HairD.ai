@@ -10,13 +10,13 @@ Hair scanner and colour advice for at-home or salon dyeing.
 
 Hairdai helps users make realistic and informed decisions when choosing to dye their hair at home or have it professionally colored in a salon. The app's results are based on a single dye session and tailored to each user's unique hair.
 
-Users start by uploading 20 photos of their hair in its current state. They can then choose one of two options:
-Select a color they want to achieve.
-Explore available options for their hair.
-Additional questions, such as "Is your hair already dyed?" help refine the results.
+Users start by uploading 20 photos of their hair in its current state.
+They can select a color they want to achieve.
+Then explore available options for their hair.
+Currently only works on the bases that users have not previously colored their hair.
 Hairdai generates personalized advice to guide users on their hair-coloring journey. Whether you're planning to dye at home or consult a stylist, Hairdai ensures you're prepared.
 
-Extra Feature: Users could view their hair with the chosen hair colour changed in the image.
+Extra Feature: Users could view their hair with the chosen hair colour changed in the image _try on feature\*_
 
 _Disclaimer -> Always consult with a professional hairstylist. Hairdai is a guide, but skilled professionals can sometimes achieve results beyond the app's recommendations—often at a higher cost or over multiple sessions._
 
@@ -26,15 +26,18 @@ Users should be able to upload photos of their current hair state and receive ta
 
 ## Tech stack
 
-**Dev**
+**Design:**
+
+- Figma (Designing the Ui)
+- Photoshop (Logo creation)
+- Chat GPT - (Logo Mockups)
+- ComfiUi - Node base image generation tool for creating hair images
+
+**Front End:**
 
 - Vite
 - ESLint
 - Prettier
-- Jest - (unit testing)
-
-**Front End:**
-
 - Web application (potential for mobile optimization or a mobile app later).
 - React (for building the user interface)
 - Tailwind CSS
@@ -44,17 +47,13 @@ Users should be able to upload photos of their current hair state and receive ta
 **Back End:**
 
 - Nodejs (Express)
-- Axios: Api
-- MongoDB - storing user data and uploaded photos
-- Mongoose
-- AUTH: JWT for session management (if time)
-- Helmet
+- Cloudinary - storing uploaded and optimized images of hair.
 
 Libraries:
 
-- Sharp: image grayscale conversion
-- Replicate APIS: Background removal
-- Cloudinary: Save custom image processing. Might be able to do all image work
+- Sharp: image grayscale conversion, image processing and
+- Cloudinary (storing uploaded and optimized images of hair).
+- React drop zone - for drag and drop areas (really cool).
 
 ## Data sources
 
